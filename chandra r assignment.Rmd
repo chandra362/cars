@@ -1,0 +1,44 @@
+```{r}
+library(readr)
+library(dplyr)
+library(ggplot2)
+str(cars)
+head(cars)
+summary(cars)
+```
+
+```{r}
+missing_values <- sapply(cars, function(x) sum(is.na(x)))
+print(missing_values)
+```
+
+```{r}
+# Visualize the data
+# Histogram for numerical variables
+num_vars <- sapply(cars, is.numeric)
+num_data <- cars[, num_vars]
+```
+
+```{r}
+# boxplot
+ggplot(cars, aes(x =speed, y =dist)) +
+  geom_boxplot(fill = "orange", color = "black") +
+  theme_minimal() +
+  labs(title = "Boxplot of Humidity by cars", x= "speed", y= "dist")
+```
+
+```{r}
+# Scatter plot to show the relationship between two numeric variables (replace 'temp' and 'humidity' with appropriate column names)
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "red") +
+  theme_minimal() +
+  labs(title = "Scatter Plot of speed vs dist", x = "speed", y = "dist")
+```
+
+```{r}
+# Time series plot for a variable over time (replace 'date' and 'temp' with appropriate column names)
+ggplot(cars, aes(x = speed , y = dist)) +
+  geom_line(color = "blue") +
+  theme_minimal() +
+  labs(title = "cars", x = "speed", y = "dist")
+```
